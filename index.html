@@ -8,20 +8,77 @@
     </head>
     
     <body>
-        <div class="col-12 col-md-4">
-            <div class="card">
-                <h3 class="city-search">Search for a city</h3>
-                <form id="user-form" class="card-body">
-                    <input name="city" id="city" type="text" placeholder="City.." name="search">
-                    <button id="searchBtn" class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
-                </form>
+        <nav class="navbar bg-dark text-white">
+            <h1 class="mx-auto">Weather Dashboard</h1>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-3 h-100">
+                    <div id="search" class="card">
+                        <h3 class="city-search">Search for a city</h3>
+                        <form id="user-form" class="card-body">
+                            <input name="city" id="city" type="text" placeholder="City.." name="search">
+                            <button id="searchBtn" class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                    <div id="recently-searched" class="d-grid">
+                        <div class="card">
+                            <h3>Recently Searched</h3>
+                            <p id="city1"></p>
+                            <p id="city2"></p>
+                            <p id="city3"></p>
+                            <p id="city4"></p>
+                            <p id="city5"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="row">
+                        <div id="currentWeather">
+                            <h3 id="weather">
+                                <span id="weather"></span>
+                            </h3>
+                            <p id="temp"></p>
+                            <p id="humidity"></p>
+                            <p id="wind-speed"></p>
+                            <p id="uv-index"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3>Forcast</h3>
+                        <div id="5dayForcast">
+                            <span class="day1">
+                                <span id="date"></span>
+                                <span id="5-day-temp"></span>
+                                <span id="5-day-humidity"></span>
+                            </span>
+                            <span class="day2">
+                                <span id="date"></span>
+                                <span id="5-day-temp"></span>
+                                <span id="5-day-humidity"></span>
+                            </span>
+                            <span class="day3">
+                                <span id="date"></span>
+                                <span id="5-day-temp"></span>
+                                <span id="5-day-humidity"></span>
+                            </span>
+                            <span class="day4">
+                                <span id="date"></span>
+                                <span id="5-day-temp"></span>
+                                <span id="5-day-humidity"></span>
+                            </span>
+                            <span class="day5">
+                                <span id="date"></span>
+                                <span id="5-day-temp"></span>
+                                <span id="5-day-humidity"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div class="col-12 col-md-8">
-            <h2 class="results">Results:<span id="city-search-term"></span></h2>
-            <div id="resuts-container" class="list-group"></div>
-        </div>
+            
 
 
         <script src="develop/js/script.js"></script>
