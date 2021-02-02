@@ -47,12 +47,13 @@ var getCityWeather = function() {
     }).then(function(data) {
         console.log(data)
         var date = new Date().toLocaleDateString()
+        var iconcon = document.querySelector("#icon")
+        iconcon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon +"@2x.png";
 
         document.getElementById("city").innerHTML = data.name + "(" + date + ")";
         document.getElementById("temp").innerHTML = "Temperature: " + data.main.temp + "F";
         document.getElementById("humidity").innerHTML = "Humidity: " + data.main.humidity + "%";
         document.getElementById("wind-speed").innerHTML = "Wind Speed: " + data.wind.speed  + " MPH";
-
     })
 }
 
