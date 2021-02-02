@@ -1,3 +1,31 @@
 /* Weather Dashboard CSS */
 
-.
+span.low {
+    padding: 3px;
+    background-color: rgb(0, 255, 0);
+    display: inline;
+}
+
+span.moderate {
+    padding: 3px;
+    background-color: rgb(208, 255, 0);
+    display: inline;
+}
+
+span.high {
+    padding: 3px;
+    background-color: rgb(255, 72, 0);
+    display: inline;
+}
+
+span.veryhigh {
+    padding: 3px;
+    background-color: rgb(255, 0, 0);
+    display: inline;
+}
+
+span.extreme {
+    padding: 3px;
+    background-color: rgb(255, 0, 200);
+    display: inline;
+}

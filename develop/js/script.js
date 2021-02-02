@@ -67,7 +67,22 @@ var getCityWeather = function() {
             if (response.ok)
             return response.json();
         }).then(function(data) {
-            document.getElementById("uv-index").innerHTML = "UV: " + data.value;
+            uvIndex = document.getElementById("uvcolor");
+
+            uvIndex.innerHTML = "UV: " + data.value;
+
+            if (data.value <= 2) {
+                uvIndex.classList.add("low");
+            } else if (data.value > 2 || data.value <= 5) {
+                uvIndex.classList.add("moderate");
+            } else if (data.value > 5 || data.value <= 7) {
+                uvIndex.classList.add("high");
+            } else if (data.value > 7 || data.value <= 10) {
+                uvIndex.classList.add("veryhigh");
+            } else if (data.value > 10) {
+                uvIndex.classList.add("extreme");
+            }
+
         })
     })
 }
