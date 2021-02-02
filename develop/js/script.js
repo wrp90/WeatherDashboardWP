@@ -67,7 +67,7 @@ var getCityWeather = function() {
             if (response.ok)
             return response.json();
         }).then(function(data) {
-            console.log(data)
+            document.getElementById("uv-index").innerHTML = "UV: " + data.value;
         })
     })
 }
