@@ -1,8 +1,6 @@
 // Weather Dashboard
 
 // Global Variables
-var citySearchTerm = document.querySelector('#city-search-term');
-var userFormEl = document.querySelector('#user-form');
 var citiesSearched = [];
 
 
@@ -15,30 +13,9 @@ var formSubmitHandler = function(event) {
     if (city) {
         citiesSearched.unshift(city)
         recentSearched();
+        getCityWeather();
+        saveSearch();
     }
-
-    // var cityInput1 = document.querySelector('#city1');
-    // var cityInput2 = document.querySelector('#city2');
-    // var cityInput3 = document.querySelector('#city3');
-    // var cityInput4 = document.querySelector('#city4');
-    // var cityInput5 = document.querySelector('#city5');
-    
-    // if (cityInput1.textContent === "") {
-    //     document.getElementById('city1').innerHTML = cityInputEl.value;
-    //     localStorage.setItem("firstCity", cityInputEl.value);
-    // } else if (cityInput2.textContent === "") {
-    //     document.getElementById('city2').innerHTML = cityInputEl.value;
-    //     localStorage.setItem("secondCity", cityInputEl.value);
-    // } else if (cityInput3.textContent === "") {
-    //     document.getElementById('city3').innerHTML = cityInputEl.value;
-    //     localStorage.setItem("thirdCity", cityInputEl.value);
-    // } else if (cityInput4.textContent === "") {
-    //     document.getElementById('city4').innerHTML = cityInputEl.value;
-    //     localStorage.setItem("fourthCity", cityInputEl.value);
-    // } else if (cityInput5.textContent === "") {
-    //     document.getElementById('city5').innerHTML = cityInputEl.value;
-    //     localStorage.setItem("fifthCity", cityInputEl.value);
-    // }
 }
 
 var recentSearched = function() {
@@ -49,8 +26,15 @@ var recentSearched = function() {
     document.getElementById('city5').innerHTML = citiesSearched[4];
 }
 
+var saveSearch = function(){
+    var cityInputEl = document.querySelector('#cityInput');
+    var city = cityInputEl.value.trim();
+    localStorage.setItem("Cities", JSON.stringify(city));
+};
 
-var getCity = function() {
+
+
+var getCityWeather = function() {
     var apiKey = "bd3c2a1565ecafc0056ecfa0ed7d9cf7";
     var cityInputEl = document.querySelector("#cityInput")
     var city = cityInputEl.value.trim();
@@ -60,7 +44,13 @@ var getCity = function() {
         if (response.ok)
         return response.json();
     }).then(function(data) {
-        console.log(data)
+        var date = new Date().toLocaleDateString()
+
+        document.getElementById("city").innerHTML = data.name + "(" + date + ")";
+        document.getElementById("temp").innerHTML = "Temperature: " + data.main.temp + "F";
+        document.getElementById("humidity").innerHTML = "Humidity: " + data.main.humidity + "%";
+        document.getElementById("wind-speed").innerHTML = "Wind Speed: " + data.wind.speed  + " MPH";
+
     })
 }
 
