@@ -12,18 +12,27 @@ var formSubmitHandler = function(event) {
     var cityInputEl = document.querySelector('#cityInput');
 
     var cityInput1 = document.querySelector('#city1');
-
-
-
-    if (cityInputEl.textContent === null) {
-        alert("Must type City");
-    }
+    var cityInput2 = document.querySelector('#city2');
+    var cityInput3 = document.querySelector('#city3');
+    var cityInput4 = document.querySelector('#city4');
+    var cityInput5 = document.querySelector('#city5');
     
     if (cityInput1.textContent === "") {
-        document.querySelector('#city1').innerHTML = cityInputEl.value;
+        document.getElementById('city1').innerHTML = cityInputEl.value;
         localStorage.setItem("firstCity", cityInputEl.value);
-    } 
-    // getCity();
+    } else if (cityInput2.textContent === "") {
+        document.getElementById('city2').innerHTML = cityInputEl.value;
+        localStorage.setItem("secondCity", cityInputEl.value);
+    } else if (cityInput3.textContent === "") {
+        document.getElementById('city3').innerHTML = cityInputEl.value;
+        localStorage.setItem("thirdCity", cityInputEl.value);
+    } else if (cityInput4.textContent === "") {
+        document.getElementById('city4').innerHTML = cityInputEl.value;
+        localStorage.setItem("fourthCity", cityInputEl.value);
+    } else if (cityInput5.textContent === "") {
+        document.getElementById('city5').innerHTML = cityInputEl.value;
+        localStorage.setItem("fifthCity", cityInputEl.value);
+    }
 }
 
 
