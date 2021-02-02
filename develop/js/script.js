@@ -1,6 +1,7 @@
 // Weather Dashboard
 
 // Global Variables
+var userFormEl = document.querySelector('#user-form');
 var citiesSearched = [];
 
 
@@ -38,12 +39,13 @@ var getCityWeather = function() {
     var apiKey = "bd3c2a1565ecafc0056ecfa0ed7d9cf7";
     var cityInputEl = document.querySelector("#cityInput")
     var city = cityInputEl.value.trim();
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
-    
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
+
     fetch(apiUrl).then(function(response) {
         if (response.ok)
         return response.json();
     }).then(function(data) {
+        console.log(data)
         var date = new Date().toLocaleDateString()
 
         document.getElementById("city").innerHTML = data.name + "(" + date + ")";
