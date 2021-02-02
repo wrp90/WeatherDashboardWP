@@ -16,6 +16,7 @@ var formSubmitHandler = function(event) {
         recentSearched();
         getCityWeather();
         saveSearch();
+        getUvIndex();
     }
 }
 
@@ -45,7 +46,7 @@ var getCityWeather = function() {
         if (response.ok)
         return response.json();
     }).then(function(data) {
-        console.log(data)
+        // console.log(data)
         var date = new Date().toLocaleDateString()
         var iconcon = document.querySelector("#icon")
         iconcon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon +"@2x.png";
@@ -54,10 +55,35 @@ var getCityWeather = function() {
         document.getElementById("temp").innerHTML = "Temperature: " + data.main.temp + "F";
         document.getElementById("humidity").innerHTML = "Humidity: " + data.main.humidity + "%";
         document.getElementById("wind-speed").innerHTML = "Wind Speed: " + data.wind.speed  + " MPH";
+
+
+        var lat = data.coord.lat;
+        var lon = data.coord.lon;
+    
+        var apiKey = "bd3c2a1565ecafc0056ecfa0ed7d9cf7";
+        var uvapiURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+    
+        fetch(uvapiURL).then(function(response) {
+            if (response.ok)
+            return response.json();
+        }).then(function(data) {
+            console.log(data)
+        })
     })
 }
 
+
+
+var getUvIndex = function(lat, lon) {
+
     
+}
+
+
+        
+
+
+
 
 
 
