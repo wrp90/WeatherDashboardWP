@@ -16,7 +16,6 @@ var formSubmitHandler = function(event) {
         recentSearched();
         getCityWeather();
         saveSearch();
-        getUvIndex();
     }
 }
 
@@ -46,10 +45,9 @@ var getCityWeather = function() {
         if (response.ok)
         return response.json();
     }).then(function(data) {
-        // console.log(data)
-        var date = new Date().toLocaleDateString()
-        var iconcon = document.querySelector("#icon")
-        iconcon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon +"@2x.png";
+        var date = new Date().toLocaleDateString();
+        var icon = document.querySelector("#icon");
+        icon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon +"@2x.png";
 
         document.getElementById("city").innerHTML = data.name + "(" + date + ")";
         document.getElementById("temp").innerHTML = "Temperature: " + data.main.temp + "F";
@@ -84,15 +82,30 @@ var getCityWeather = function() {
             }
 
         })
+        var forcastApiURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +"&units=imperial&appid=" + apiKey;
+        fetch(forcastApiURL).then(function(response) {
+            if (response.ok)
+            return response.json();
+        }).then(function(data) {
+            console.log(data)
+            var firstDaySpan = document.querySelector("#day1")
+            // var fiveDayicon = document.querySelector("#icon");
+            // fiveDayicon.src = "http://openweathermap.org/img/wn/" + data.list[2].weather.icon +"@2x.png";
+            var date = new Date().toLocaleDateString();
+            document.getElementById("date1").innerHTML = date;
+            document.getElementById("first-day-temp").innerHTML = "Temp: " + data.list[2].main.temp; 
+            document.getElementById("first-day-humidity").innerHTML = "Humidity: " + data.list[2].main.temp;
+        })
     })
 }
 
 
 
-var getUvIndex = function(lat, lon) {
-
+// var get5day= function() {
+//     var apiKey = "bd3c2a1565ecafc0056ecfa0ed7d9cf7";
+//     var forcastApiURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +"&appid=" + apiKey;
     
-}
+// }
 
 
         
