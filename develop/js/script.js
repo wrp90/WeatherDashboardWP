@@ -1,36 +1,37 @@
 // Weather Dashboard
 
 // Global Variables
-var resultsContainerEl = document.querySelector("#resuts-container");
 var citySearchTerm = document.querySelector('#city-search-term');
 var userFormEl = document.querySelector('#user-form');
-var cityInputEl = document.querySelector('#city');
-var searchHistoryContainer = document.querySelector('#search-history-container');
-var searchedCities = [];
+// var citiesSearched = [];
+
 
 
 var formSubmitHandler = function(event) {
     event.preventDefault();
+    var cityInputEl = document.querySelector('#cityInput');
 
-    var cityInputEl = document.querySelector('#city');
+    var cityInput1 = document.querySelector('#city1');
 
-    var citySearched = cityInputEl.value.trim();
 
-    if (citySearched) {
-        getCity(citySearched);
-        displayEl();
+
+    if (cityInputEl.textContent === null) {
+        alert("Must type City");
     }
+    
+    if (cityInput1.textContent === "") {
+        document.querySelector('#city1').innerHTML = cityInputEl.value;
+        localStorage.setItem("firstCity", cityInputEl.value);
+    } 
+    // getCity();
 }
+
 
 var getCity = function() {
     var apiKey = "bd3c2a1565ecafc0056ecfa0ed7d9cf7";
+    var cityInputEl = document.querySelector("#cityInput")
     var city = cityInputEl.value.trim();
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
-    
-    localStorage.setItem("city", city); 
-
-    document.getElementById('search-history-container').textcontent = localStorage.getItem(city);
-
     
     fetch(apiUrl).then(function(response) {
         if (response.ok)
@@ -40,14 +41,9 @@ var getCity = function() {
     })
 }
 
-
-var displayEl = function() {
     
-}
 
-// var recentlySearched = function() {
-//     searchedCities = 
-// }
+
 
 
 
