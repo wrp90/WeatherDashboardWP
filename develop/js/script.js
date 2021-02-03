@@ -110,8 +110,8 @@ var getCityWeather = function(city) {
                     var icon = document.querySelector("#day-icon" + daycount);
                     icon.src = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
                     document.getElementById("date" + daycount).innerHTML = data.list[i].dt_txt.substring(0,10);
-                    document.getElementById("day-temp" + daycount).innerHTML = "Temp: " + data.list[i].main.temp; 
-                    document.getElementById("day-humidity" + daycount).innerHTML = "Humidity: " + data.list[i].main.humidity;
+                    document.getElementById("day-temp" + daycount).innerHTML = "Temp: " + data.list[i].main.temp + "F"; 
+                    document.getElementById("day-humidity" + daycount).innerHTML = "Humidity: " + data.list[i].main.humidity + "%";
                     // increment day
                     daycount = daycount + 1;
                 }
