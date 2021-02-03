@@ -14,22 +14,21 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-3 h-100">
+                <div class="col-3 h-200">
                     <div id="search" class="card">
-                        <h3 class="city-search">Search for a city</h3>
+                        <h3 class="city-search display">Search for a city</h3>
                         <form id="user-form" class="card-body">
-                            <input name="city" id="cityInput" type="text" placeholder="City.." name="search">
+                            <input class="w-75 mb-2" name="city" id="cityInput" type="text" placeholder="City.." name="search">
                             <button id="searchBtn" class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
-                    <div id="recently-searched" class="d-grid">
+                    <div id="recently-searched" class="d-grid gap-2">
                         <div id="city-list" class="card">
-                            <h3>Recently Searched</h3>
-                            <span id="city1"></span>
-                            <span id="city2"></span>
-                            <span id="city3"></span>
-                            <span id="city4"></span>
-                            <span id="city5"></span>
+                            <span id="city1" class="card text-center"></span>
+                            <span id="city2" class="card text-center"></span>
+                            <span id="city3" class="card text-center"></span>
+                            <span id="city4" class="card text-center"></span>
+                            <span id="city5" class="card text-center"></span>
                         </div>
                     </div>
                 </div>
@@ -47,32 +46,32 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div id="5dayForcast" class="row">
-                            <div id="dayone" class="day1" class="col-2 card w-15">
+                        <div id="5dayForcast" class="row" style="display: none;">
+                            <div id="day1" class="text-white card col-2 w-15">
                                 <p id="date1"></p>
                                 <img id="day-icon1" src="">
                                 <p id="day-temp1"></p>
                                 <p id="day-humidity1"></p>
                             </div>
-                            <div id="daytwo" class="day2" class="col-2 card w-15">
+                            <div id="day2" class="text-white card col-2 w-15">
                                 <p id="date2"></p>
                                 <img id="day-icon2" src="">
                                 <p id="day-temp2"></p>
                                 <p id="day-humidity2"></p>
                             </div>
-                            <div id="day3" class="day3" class="col-2 card w-15">
+                            <div id="day3" class="text-white card col-2 w-15">
                                 <p id="date3"></p>
                                 <img id="day-icon3" src="">
                                 <p id="day-temp3"></p>
                                 <p id="day-humidity3"></p>
                             </div>
-                            <div id="day4" class="day4" class="col-2 card w-15">
+                            <div id="day4" class="text-white card col-2 w-15">
                                 <p id="date4"></p>
                                 <img id="day-icon4" src="">
                                 <p id="day-temp4"></p>
                                 <p id="day-humidity4"></p>
                             </div>
-                            <div id="day5" class="day5" class="col-2 card w-15">
+                            <div id="day5" class="text-white card col-2 w-15">
                                 <p id="date5"></p>
                                 <img id="day-icon5" src="">
                                 <p id="day-temp5"></p>

@@ -2,6 +2,7 @@
 
 // Global Variables
 var userFormEl = document.querySelector('#user-form');
+var cityList = document.getElementById("city-list");
 var citiesSearched = [];
 
 
@@ -28,7 +29,7 @@ var searchHistoryHandler = function(event) {
 
 
 
-//recent searched section
+//recent searched section.  Takes from the Array citiesSearched that's made from citiesSearched.unshift(cityName) (17)
 var recentSearched = function() {
     document.getElementById('city1').innerHTML = citiesSearched[0] || '';
     document.getElementById('city2').innerHTML = citiesSearched[1] || '';
@@ -47,9 +48,10 @@ var saveSearch = function(){
 
 //gets the city weather with 3 fetches for weather, uv index and 5 day forcast. 
 var getCityWeather = function(city) {
+    var fivedayShow = document.getElementById("5dayForcast")
+    fivedayShow.style.removeProperty("display");
+    //fetch request for current weather
     var apiKey = "bd3c2a1565ecafc0056ecfa0ed7d9cf7";
-    var cityInputEl = document.querySelector("#cityInput")
-    
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
 
     fetch(apiUrl).then(function(response) {
@@ -65,6 +67,7 @@ var getCityWeather = function(city) {
         document.getElementById("humidity").innerHTML = "Humidity: " + data.main.humidity + "%";
         document.getElementById("wind-speed").innerHTML = "Wind Speed: " + data.wind.speed  + " MPH";
 
+        //fetch request for the UV-index
         //vars for the uvapiURL
         var lat = data.coord.lat;
         var lon = data.coord.lon;
@@ -80,16 +83,16 @@ var getCityWeather = function(city) {
 
             uvIndex.innerHTML = "UV: " + data.value;
             //if and else if to select the proper uv color
-            if (data.value <= 2) {
-                uvIndex.classList.add("low");
-            } else if (data.value > 2 || data.value <= 5) {
+            if (data.value <= 3) {
+                uvIndex.classList.add("favorable");
+            } else if (data.value > 3 || data.value <= 6) {
                 uvIndex.classList.add("moderate");
-            } else if (data.value > 5 || data.value <= 7) {
-                uvIndex.classList.add("high");
-            } else if (data.value > 7 || data.value <= 10) {
-                uvIndex.classList.add("veryhigh");
-            } else if (data.value > 10) {
+            } else if (data.value > 6) {
                 uvIndex.classList.add("extreme");
+            // } else if (data.value > 7 || data.value <= 10) {
+            //     uvIndex.classList.add("veryhigh");
+            // } else if (data.value > 10) {
+            //     uvIndex.classList.add("extreme");
             }
 
         })
@@ -118,6 +121,6 @@ var getCityWeather = function(city) {
 //event listener for search button
 userFormEl.addEventListener('submit', formSubmitHandler);
 //event listener for the searched city list
-document.getElementById("city-list").addEventListener("click", searchHistoryHandler)
+cityList.addEventListener("click", searchHistoryHandler)
 
 

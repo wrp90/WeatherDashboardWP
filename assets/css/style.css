@@ -1,6 +1,6 @@
 /* Weather Dashboard CSS */
 
-span.low {
+span.favorable {
     padding: 3px;
     background-color: rgb(0, 255, 0);
     display: inline;
@@ -8,24 +8,44 @@ span.low {
 
 span.moderate {
     padding: 3px;
-    background-color: rgb(208, 255, 0);
+    background-color: rgb(248, 144, 74);
     display: inline;
 }
 
-span.high {
-    padding: 3px;
-    background-color: rgb(255, 72, 0);
-    display: inline;
-}
-
-span.veryhigh {
+span.severe {
     padding: 3px;
     background-color: rgb(255, 0, 0);
     display: inline;
 }
 
-span.extreme {
-    padding: 3px;
-    background-color: rgb(255, 0, 200);
-    display: inline;
+.w-15 {
+    float: left;
+    background-color: rgb(47, 175, 207);
+    margin-left: 10px;
 }
+
+/* #day1 {
+    background-color: rgb(114, 154, 230);
+    display: inline-block;
+    
+}
+
+#day2 {
+    background-color: rgb(114, 154, 230);
+    display: inline-block;
+}
+
+#day3{
+    background-color: rgb(114, 154, 230);
+    display: inline-block;
+}
+
+#day4 {
+    background-color: rgb(114, 154, 230);
+    display: inline-block;
+}
+
+#day5 {
+    background-color: rgb(114, 154, 230);
+    display: inline-block;
+} */
