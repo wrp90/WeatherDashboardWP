@@ -5,7 +5,8 @@ var userFormEl = document.querySelector('#user-form');
 var citiesSearched = [];
 
 
-
+//handler to take in search input and call the correct functions
+//also saves the searched city into var citiesSearched for search history
 var formSubmitHandler = function(event) {
     event.preventDefault();
     var cityInputEl = document.querySelector('#cityInput');
@@ -19,13 +20,15 @@ var formSubmitHandler = function(event) {
     }
 }
 
-// for each citySearch
-// -- listen for click on city[i]
-// -- -- on click call getCityWeather(name of button)
+//handles the clicks in the searched cities list
+var searchHistoryHandler = function(event) {
+    var cityName = event.target.textContent;
+    getCityWeather(cityName);
+}
 
 
 
-
+//recent searched section
 var recentSearched = function() {
     document.getElementById('city1').innerHTML = citiesSearched[0] || '';
     document.getElementById('city2').innerHTML = citiesSearched[1] || '';
@@ -34,6 +37,7 @@ var recentSearched = function() {
     document.getElementById('city5').innerHTML = citiesSearched[4] || '';
 }
 
+//saves the last search and stores it to local storage
 var saveSearch = function(){
     var cityInputEl = document.querySelector('#cityInput');
     var city = cityInputEl.value.trim();
@@ -41,7 +45,7 @@ var saveSearch = function(){
 };
 
 
-
+//gets the city weather with 3 fetches for weather, uv index and 5 day forcast. 
 var getCityWeather = function(city) {
     var apiKey = "bd3c2a1565ecafc0056ecfa0ed7d9cf7";
     var cityInputEl = document.querySelector("#cityInput")
@@ -52,16 +56,16 @@ var getCityWeather = function(city) {
         if (response.ok)
         return response.json();
     }).then(function(data) {
-        var date = new Date().toLocaleDateString();
-        var icon = document.querySelector("#icon");
-        icon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
-
+        var date = new Date().toLocaleDateString();//current date
+        var icon = document.querySelector("#icon");//icon
+        icon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";//icon source
+        //adding parts of the data to the HTML
         document.getElementById("city").innerHTML = data.name + "(" + date + ")";
         document.getElementById("temp").innerHTML = "Temperature: " + data.main.temp + "F";
         document.getElementById("humidity").innerHTML = "Humidity: " + data.main.humidity + "%";
         document.getElementById("wind-speed").innerHTML = "Wind Speed: " + data.wind.speed  + " MPH";
 
-
+        //vars for the uvapiURL
         var lat = data.coord.lat;
         var lon = data.coord.lon;
     
@@ -75,7 +79,7 @@ var getCityWeather = function(city) {
             uvIndex = document.getElementById("uvcolor");
 
             uvIndex.innerHTML = "UV: " + data.value;
-
+            //if and else if to select the proper uv color
             if (data.value <= 2) {
                 uvIndex.classList.add("low");
             } else if (data.value > 2 || data.value <= 5) {
@@ -89,6 +93,8 @@ var getCityWeather = function(city) {
             }
 
         })
+
+        //5 day forcast fetch request using a for loop to loop through the data.list from the fetch data
         var daycount = 1;
         var forcastApiURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +"&units=imperial&appid=" + apiKey;
         fetch(forcastApiURL).then(function(response) {
@@ -109,7 +115,9 @@ var getCityWeather = function(city) {
     })
 }
 
+//event listener for search button
 userFormEl.addEventListener('submit', formSubmitHandler);
-
+//event listener for the searched city list
+document.getElementById("city-list").addEventListener("click", searchHistoryHandler)
 
 
