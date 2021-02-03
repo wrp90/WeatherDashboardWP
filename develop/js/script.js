@@ -9,22 +9,29 @@ var citiesSearched = [];
 var formSubmitHandler = function(event) {
     event.preventDefault();
     var cityInputEl = document.querySelector('#cityInput');
-    var city = cityInputEl.value.trim();
+    var cityName = cityInputEl.value.trim();
     
-    if (city) {
-        citiesSearched.unshift(city)
+    if (cityName) {
+        citiesSearched.unshift(cityName)
         recentSearched();
-        getCityWeather();
+        getCityWeather(cityName);
         saveSearch();
     }
 }
 
+// for each citySearch
+// -- listen for click on city[i]
+// -- -- on click call getCityWeather(name of button)
+
+
+
+
 var recentSearched = function() {
-    document.getElementById('city1').innerHTML = citiesSearched[0];
-    document.getElementById('city2').innerHTML = citiesSearched[1];
-    document.getElementById('city3').innerHTML = citiesSearched[2];
-    document.getElementById('city4').innerHTML = citiesSearched[3];
-    document.getElementById('city5').innerHTML = citiesSearched[4];
+    document.getElementById('city1').innerHTML = citiesSearched[0] || '';
+    document.getElementById('city2').innerHTML = citiesSearched[1] || '';
+    document.getElementById('city3').innerHTML = citiesSearched[2] || '';
+    document.getElementById('city4').innerHTML = citiesSearched[3] || '';
+    document.getElementById('city5').innerHTML = citiesSearched[4] || '';
 }
 
 var saveSearch = function(){
@@ -35,10 +42,10 @@ var saveSearch = function(){
 
 
 
-var getCityWeather = function() {
+var getCityWeather = function(city) {
     var apiKey = "bd3c2a1565ecafc0056ecfa0ed7d9cf7";
     var cityInputEl = document.querySelector("#cityInput")
-    var city = cityInputEl.value.trim();
+    
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
 
     fetch(apiUrl).then(function(response) {
@@ -47,7 +54,7 @@ var getCityWeather = function() {
     }).then(function(data) {
         var date = new Date().toLocaleDateString();
         var icon = document.querySelector("#icon");
-        icon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon +"@2x.png";
+        icon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
 
         document.getElementById("city").innerHTML = data.name + "(" + date + ")";
         document.getElementById("temp").innerHTML = "Temperature: " + data.main.temp + "F";
@@ -82,40 +89,25 @@ var getCityWeather = function() {
             }
 
         })
+        var daycount = 1;
         var forcastApiURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +"&units=imperial&appid=" + apiKey;
         fetch(forcastApiURL).then(function(response) {
             if (response.ok)
             return response.json();
         }).then(function(data) {
-            console.log(data)
-            var firstDaySpan = document.querySelector("#day1")
-            // var fiveDayicon = document.querySelector("#icon");
-            // fiveDayicon.src = "http://openweathermap.org/img/wn/" + data.list[2].weather.icon +"@2x.png";
-            var date = new Date().toLocaleDateString();
-            document.getElementById("date1").innerHTML = date;
-            document.getElementById("first-day-temp").innerHTML = "Temp: " + data.list[2].main.temp; 
-            document.getElementById("first-day-humidity").innerHTML = "Humidity: " + data.list[2].main.temp;
+                console.log(data)
+                for (var i = 4; i < 40; i = i+8) {
+                    var icon = document.querySelector("#day-icon" + daycount);
+                    icon.src = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
+                    document.getElementById("date" + daycount).innerHTML = data.list[i].dt_txt.substring(0,10);
+                    document.getElementById("day-temp" + daycount).innerHTML = "Temp: " + data.list[i].main.temp; 
+                    document.getElementById("day-humidity" + daycount).innerHTML = "Humidity: " + data.list[i].main.humidity;
+                    // increment day
+                    daycount = daycount + 1;
+                }
         })
     })
 }
-
-
-
-// var get5day= function() {
-//     var apiKey = "bd3c2a1565ecafc0056ecfa0ed7d9cf7";
-//     var forcastApiURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +"&appid=" + apiKey;
-    
-// }
-
-
-        
-
-
-
-
-
-
-
 
 userFormEl.addEventListener('submit', formSubmitHandler);
 
