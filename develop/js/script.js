@@ -3,9 +3,13 @@
 // Global Variables
 var userFormEl = document.querySelector('#user-form');
 var cityList = document.getElementById("city-list");
+
 var citiesSearched = [];
 
-
+// window.onload = function() {
+//     var getCity = localStorage.getItem("City");
+//     document.getElementById('cityInput').innerHTML = getCity;
+// }
 //handler to take in search input and call the correct functions
 //also saves the searched city into var citiesSearched for search history
 var formSubmitHandler = function(event) {
@@ -18,6 +22,7 @@ var formSubmitHandler = function(event) {
         recentSearched();
         getCityWeather(cityName);
         saveSearch();
+        localStorage.setItem("City", cityName);
     }
 }
 
@@ -89,10 +94,6 @@ var getCityWeather = function(city) {
                 uvIndex.classList.add("moderate");
             } else if (data.value > 6) {
                 uvIndex.classList.add("extreme");
-            // } else if (data.value > 7 || data.value <= 10) {
-            //     uvIndex.classList.add("veryhigh");
-            // } else if (data.value > 10) {
-            //     uvIndex.classList.add("extreme");
             }
 
         })

@@ -20,3 +20,7 @@
 simply by clicking on the city name.
 
 # Link & Screen Shot
+
+https://wrp90.github.io/WeatherDashboardWP/
+
+![Getting Started](./assets/imgs/weather(2).png)
