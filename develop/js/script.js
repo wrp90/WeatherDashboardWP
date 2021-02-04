@@ -6,6 +6,7 @@ var cityList = document.getElementById("city-list");
 
 var citiesSearched = [];
 
+//onload function to load the last city searched
 window.onload = function() {
     var getCity = localStorage.getItem("City");
     getCityWeather(getCity);

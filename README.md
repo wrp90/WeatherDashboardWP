@@ -16,8 +16,9 @@
     * date
     * temp
     * humidity
-* Every city that is searched will be put in the searched cites section, where the user re-search for a city 
+* Every city that is searched will be put in the searched cites section, where the user can re-search for a city 
 simply by clicking on the city name.
+* The last City searched will now stay on the page even when page is refreshed.
 
 # Link & Screen Shot
 
