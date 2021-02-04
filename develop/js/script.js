@@ -65,7 +65,7 @@ var getCityWeather = function(city) {
     }).then(function(data) {
         var date = new Date().toLocaleDateString();//current date
         var icon = document.querySelector("#icon");//icon
-        icon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";//icon source
+        icon.src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";//icon source
         //adding parts of the data to the HTML
         document.getElementById("city").innerHTML = data.name + "(" + date + ")";
         document.getElementById("temp").innerHTML = "Temperature: " + data.main.temp + "F";
@@ -78,7 +78,7 @@ var getCityWeather = function(city) {
         var lon = data.coord.lon;
     
         var apiKey = "bd3c2a1565ecafc0056ecfa0ed7d9cf7";
-        var uvapiURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+        var uvapiURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
     
         fetch(uvapiURL).then(function(response) {
             if (response.ok)
@@ -100,7 +100,7 @@ var getCityWeather = function(city) {
 
         //5 day forcast fetch request using a for loop to loop through the data.list from the fetch data
         var daycount = 1;
-        var forcastApiURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +"&units=imperial&appid=" + apiKey;
+        var forcastApiURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +"&units=imperial&appid=" + apiKey;
         fetch(forcastApiURL).then(function(response) {
             if (response.ok)
             return response.json();
@@ -108,7 +108,7 @@ var getCityWeather = function(city) {
                 console.log(data)
                 for (var i = 4; i < 40; i = i+8) {
                     var icon = document.querySelector("#day-icon" + daycount);
-                    icon.src = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
+                    icon.src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
                     document.getElementById("date" + daycount).innerHTML = data.list[i].dt_txt.substring(0,10);
                     document.getElementById("day-temp" + daycount).innerHTML = "Temp: " + data.list[i].main.temp + "F"; 
                     document.getElementById("day-humidity" + daycount).innerHTML = "Humidity: " + data.list[i].main.humidity + "%";
