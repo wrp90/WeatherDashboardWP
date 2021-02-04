@@ -1,5 +1,5 @@
 # WeatherDashboardWP
-* The goal of this project was to get experience useing API's to pull data and display that data when needed. 
+* The goal of this project was to get experience using API's to pull data and display that data when needed. 
 
 # How to use
 * The app is simple.  Just search for a city in the search bar.
