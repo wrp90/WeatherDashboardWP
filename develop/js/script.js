@@ -25,6 +25,7 @@ var formSubmitHandler = function(event) {
         recentSearched();
         getCityWeather(cityName);
         saveSearch();
+        localStorage.setItem("City", cityName);
     }
 }
 
@@ -108,7 +109,7 @@ var getCityWeather = function(city) {
                 console.log(data)
                 for (var i = 4; i < 40; i = i+8) {
                     var icon = document.querySelector("#day-icon" + daycount);
-                    icon.src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
+                    icon.src = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
                     document.getElementById("date" + daycount).innerHTML = data.list[i].dt_txt.substring(0,10);
                     document.getElementById("day-temp" + daycount).innerHTML = "Temp: " + data.list[i].main.temp + "F"; 
                     document.getElementById("day-humidity" + daycount).innerHTML = "Humidity: " + data.list[i].main.humidity + "%";
