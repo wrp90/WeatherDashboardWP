@@ -6,10 +6,10 @@ var cityList = document.getElementById("city-list");
 
 var citiesSearched = [];
 
-// window.onload = function() {
-//     var getCity = localStorage.getItem("City");
-//     document.getElementById('cityInput').innerHTML = getCity;
-// }
+window.onload = function() {
+    var getCity = localStorage.getItem("City");
+    getCityWeather(getCity);
+}
 //handler to take in search input and call the correct functions
 //also saves the searched city into var citiesSearched for search history
 var formSubmitHandler = function(event) {
