@@ -9,6 +9,8 @@ var citiesSearched = [];
 //onload function to load the last city searched
 window.onload = function() {
     var getCity = localStorage.getItem("City");
+    var fivedayShow = document.getElementById("5dayForcast")
+    fivedayShow.style.removeProperty("display");
     getCityWeather(getCity);
 }
 //handler to take in search input and call the correct functions
@@ -98,7 +100,7 @@ var getCityWeather = function(city) {
             }
 
         })
-
+        
         //5 day forcast fetch request using a for loop to loop through the data.list from the fetch data
         var daycount = 1;
         var forcastApiURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +"&units=imperial&appid=" + apiKey;
@@ -106,7 +108,6 @@ var getCityWeather = function(city) {
             if (response.ok)
             return response.json();
         }).then(function(data) {
-                console.log(data)
                 for (var i = 4; i < 40; i = i+8) {
                     var icon = document.querySelector("#day-icon" + daycount);
                     icon.src = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
@@ -117,6 +118,7 @@ var getCityWeather = function(city) {
                     daycount = daycount + 1;
                 }
         })
+        console.log("code works here")
     })
 }
 
