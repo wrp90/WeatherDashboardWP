@@ -17,13 +17,14 @@ var formSubmitHandler = function(event) {
     event.preventDefault();
     var cityInputEl = document.querySelector('#cityInput');
     var cityName = cityInputEl.value.trim();
+    var fivedayShow = document.getElementById("5dayForcast")
+    fivedayShow.style.removeProperty("display");
     
     if (cityName) {
         citiesSearched.unshift(cityName)
         recentSearched();
         getCityWeather(cityName);
         saveSearch();
-        localStorage.setItem("City", cityName);
     }
 }
 
@@ -54,8 +55,6 @@ var saveSearch = function(){
 
 //gets the city weather with 3 fetches for weather, uv index and 5 day forcast. 
 var getCityWeather = function(city) {
-    var fivedayShow = document.getElementById("5dayForcast")
-    fivedayShow.style.removeProperty("display");
     //fetch request for current weather
     var apiKey = "bd3c2a1565ecafc0056ecfa0ed7d9cf7";
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
