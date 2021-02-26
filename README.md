@@ -25,3 +25,6 @@ simply by clicking on the city name.
 https://wrp90.github.io/WeatherDashboardWP/
 
 ![Getting Started](./assets/imgs/weather.png)
+
+
+* For more info please contact wpapp90@gmail.com

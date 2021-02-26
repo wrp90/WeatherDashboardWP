@@ -66,6 +66,7 @@ var getCityWeather = function(city) {
         if (response.ok)
         return response.json();
     }).then(function(data) {
+        console.log(data)
         var date = new Date().toLocaleDateString();//current date
         var icon = document.querySelector("#icon");//icon
         icon.src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";//icon source
@@ -108,6 +109,7 @@ var getCityWeather = function(city) {
             if (response.ok)
             return response.json();
         }).then(function(data) {
+            console.log(data)
                 for (var i = 4; i < 40; i = i+8) {
                     var icon = document.querySelector("#day-icon" + daycount);
                     icon.src = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
@@ -118,7 +120,6 @@ var getCityWeather = function(city) {
                     daycount = daycount + 1;
                 }
         })
-        console.log("code works here")
     })
 }
 
